@@ -5,7 +5,5 @@ function FonHen_JieMa(u){
                     for (i = 1; i < n - 1; i++) {
                                 x += String.fromCharCode(uArr[i]);
                     } 
-                    return x;
-}  
-                    }
+                    return x
 }
