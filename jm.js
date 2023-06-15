@@ -46,3 +46,25 @@ function rc4(data, key, t) {
         return btoa(cipher);
     }
 }
+
+function clearM3u8(url) {
+    if (url.includes("index.m3u8")) {
+        let houz = request(url).split("\n")[2];
+        url = url.replace("index.m3u8", houz);
+    }
+    let f = cacheM3u8(url);
+    let c = readFile(f.split("##")[0]);
+    if (c.includes("#EXT-X-DISCONTINUITY") && /\d{6}\.ts/.test(c)) {
+        let arr = c.split("#EXT-X-DISCONTINUITY");
+        let lib = [];
+        arr.forEach((key) => {
+            if (key.includes('EXT-X-') || /\d{6}\.ts/.test(key)) {
+                lib.push(key);
+            }
+        });
+        if (lib.length > 3) {
+            writeFile(f.split("##")[0], lib.join('#EXT-X-DISCONTINUITY'));
+        }
+    }
+    return f;
+}
