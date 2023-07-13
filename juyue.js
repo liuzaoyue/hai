@@ -104,7 +104,7 @@ function dtfl() {
         });
     }`;
     return dt;
-},
+}
 
 function banner(start, arr, data, cfg) {
         let id = 'juyue';
