@@ -6,6 +6,9 @@ function dtfl() {
         clearMyVar(host+'url');
         clearMyVar(host+'t');
     },host));
+    function strong(d, c) {
+    return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
+}
     try {
         var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类));
     } catch (e) {
@@ -101,82 +104,3 @@ function dtfl() {
     }`;
     return dt;
 }
-
-function strong(d, c) {
-    return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
-}
-
-function banner(start, arr, data, cfg) {
-        let id = 'juyue';
-        var rnum = Math.floor(Math.random() * data.length);
-        var item = data[rnum];
-        putMyVar('rnum', rnum);
-        let time = 5000;
-        let col_type = 'pic_1_card';
-        let desc = '';
-        if (cfg != undefined) {
-            time = cfg.time ? cfg.time : time;
-            col_type = cfg.col_type ? cfg.col_type : col_type;
-            desc = cfg.desc ? cfg.desc : desc;
-        }       
-        arr.push({
-            col_type: col_type,
-            img: item.img,
-            desc: desc,
-            title: item.title,
-            url: item.url,
-            extra: {
-                id: 'bar', 
-                name: item.extra.name,               
-            }
-        })
-
-        if (start == false || getMyVar('benstart', 'true') == 'false') {
-            unRegisterTask(id)
-            return
-        }
-
-        let obj = {
-            data: data,
-        };
-
-        registerTask(id, time, $.toString((obj) => {
-            var data = obj.data;
-            var rum = getMyVar('rnum');
-
-            var i = Number(getMyVar('banneri', '0'));
-            if (rum != '') {
-                i = Number(rum) + 1
-                clearMyVar('rnum')
-            } else {
-                i = i + 1;
-            }
-            //log(i)
-            //log(data.length)
-
-            if (i > data.length - 1) {
-                i = 0
-            }
-            var item = data[i];
-           
-            try {
-                updateItem('bar', {
-                    title: item.title,
-                    img: item.img,
-                    extra: {                        
-                        //name: item.extra.name,
-                        sname: item.extra.sname,
-                        stype: item.extra.stype,
-                        surl: item.url,
-                        //img:item.img,
-                        pageTitle: item.extra.name,
-                    }
-                })
-            } catch (e) {
-                log(e.message)
-                unRegisterTask('banner')
-            }
-            putMyVar('banneri', i);
-
-        }, obj))
-    }
