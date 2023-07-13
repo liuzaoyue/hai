@@ -1,6 +1,6 @@
 js:
 function dtfl() {
-    var dt =`
+        var dt = `
     const empty = 'hiker://empty'
     
     addListener('onClose', $.toString((host) => {
@@ -12,7 +12,9 @@ function dtfl() {
     } catch (e) {
         var categories = pdfa(html, 大类定位);
     }
-
+    function strong(d, c) {
+    return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
+}
     let init_cate = [];
     for (let i = 0; i < 20; i++) {
         init_cate.push('0');
@@ -101,8 +103,8 @@ function dtfl() {
             }
         });
     }`;
-    return dt;
-}
+        return dt;
+    }
 
 function strong(d, c) {
     return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
