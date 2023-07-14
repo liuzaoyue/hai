@@ -99,7 +99,7 @@ function dtfl() {
             }
         });
     }`;
-    return eval(dt);
+    return dt;
 }
 function gfs(size) {
     if (!size)
