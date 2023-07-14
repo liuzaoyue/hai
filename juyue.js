@@ -1,8 +1,8 @@
 js:
 function dtfl() {
-    var dt =`
-    const empty = 'hiker://empty';
-    addListener('onClose', $.toString((host) => {
+    var dt = `
+    const empty = 'hiker://empty'
+    addListener('onClose', $.toString((host) => {log('addListener');
         clearMyVar(host+'url');
         clearMyVar(host+'t');
     },host));
@@ -10,14 +10,11 @@ function dtfl() {
         var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类));
     } catch (e) {
         var categories = pdfa(html, 大类定位);
-    };
-    function strong(d, c) {
-    return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
-};
-let init_cate = [];
+    }
+    let init_cate = [];
     for (let i = 0; i < 20; i++) {
         init_cate.push('0');
-    };
+    }
     const fold = getMyVar('fold', '1');
     const cate_temp_json = getMyVar(host+'t', JSON.stringify(init_cate));
     const cate_temp = JSON.parse(cate_temp_json);
@@ -27,7 +24,7 @@ let init_cate = [];
             url: $('#noLoading#').lazyRule((fold) => {
                 putMyVar('fold', fold === '1' ? '0' : '1');
                 refreshPage(false);
-                return 'hiker://empty';
+                return 'hiker://empty'
             }, fold),
             col_type: 'scroll_button',
         });
