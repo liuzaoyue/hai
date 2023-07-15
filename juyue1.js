@@ -38,16 +38,6 @@ function dtfl() {
             }, fold),
             col_type: 'scroll_button',
         });
-        d.push({
-            title: '🗑️',
-            url: $('#noLoading#').lazyRule((fold,host) => {
-                clearMyVar(host+'url');
-                clearMyVar(host+'t');
-                refreshPage();
-                return 'hiker://empty';
-            },fold,host ),
-            col_type: 'scroll_button',
-        });
         categories.forEach((category, index) => {
             if (index === 0) {
                 if (typeof(小类定位_主) != 'undefined') {
