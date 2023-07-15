@@ -105,6 +105,13 @@ function gfs(size) {
         return (size / Math.pow(num, 3)).toFixed(2) + "G"; //G
     return (size / Math.pow(num, 4)).toFixed(2) + "T"; //T
 }
+    function ocr(codeurl,headers) {
+                    headers= headers || {};
+                    let img = convertBase64Image(codeurl,headers).replace('data:image/jpeg;base64,','');
+                    let code = request('https://api.xhofe.top/ocr/b64/text', { body: img, method: 'POST', headers: {"Content-Type":"text/html"}});
+                    log('识别验证码：'+code);
+                    return code;
+                }
     function mline(n) {
         var a = `
         for (var k = 1; k <= ${n}; k++) {
