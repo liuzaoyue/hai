@@ -1,4 +1,14 @@
 js:
+function ocr(codeurl, headers) {
+    headers = headers || {};
+    let img = convertBase64Image(codeurl, headers).replace('data:image/jpeg;base64,', '');
+    let code = request('https://api.xhofe.top/ocr/b64/text', {
+        body: img,
+        method: 'POST',
+        headers: {
+            "Content-Type": "text/html"
+        }
+    })
 function dtfl() {
     var dt = `
     const empty = 'hiker://empty'
