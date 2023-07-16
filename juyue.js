@@ -234,6 +234,12 @@ function banner(start, arr, data, cfg) {
     return code;
 }  
 function yz(url) {
+    var sj = new Date().getMonth() + 1 + ' ' + new Date().getDate();
+        var a = storage0.getItem('sj');
+            if (a != sj) {
+                    clearItem('time');
+                        }
+                            storage0.setItem('sj', sj);
     if (storage0.getItem('time') > '0' || storage0.getItem('time') == '') {
         var aa = post('http://www.bhshare.cn/imgcode/?', {
             body: 'token=1782af5d6&type=online&uri=' + url
