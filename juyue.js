@@ -233,3 +233,23 @@ function banner(start, arr, data, cfg) {
     log('识别验证码：' + code);
     return code;
 }  
+function yz(url) {
+    if (storage0.getItem('time') > '0' || storage0.getItem('time') == '') {
+        var aa = post('http://www.bhshare.cn/imgcode/?', {
+            body: 'token=1782af5d6&type=online&uri=' + url
+        });
+        var yzm = JSON.parse(aa);
+        var yz = yzm.data;
+        var times = yzm.times;
+        storage0.setItem('time', times);
+        yz = yz.replace(/O|o/g, '0');
+        yz = yz.replace(/Q|q/g, '0');
+        yz = yz.replace(/i|I/g, '1');
+        yz = yz.replace(/L|l/g, '1');
+        yz = yz.replace(/x|X/g, '4');
+        yz = yz.replace(/q|g/g, '9');
+        yz = yz.replace(/b/g, '6');
+        log('识别验证码：' + yz);
+        return yz
+    }
+}
