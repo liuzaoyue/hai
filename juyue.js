@@ -234,7 +234,7 @@ function banner(start, arr, data, cfg) {
     return code;
 }  
 function yz(url) {
-    var sj = new Date().getMonth() + 1 + ' ' + new Date().getDate();
+    var sj = new Date().toLocaleDateString();
         var a = storage0.getItem('sj');
             if (a != sj) {
                     clearItem('time');
