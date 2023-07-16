@@ -109,6 +109,13 @@ function gfs(size) {
                     headers= headers || {};
                     let img = convertBase64Image(codeurl,headers).replace('data:image/jpeg;base64,','');
                     let code = request('https://api.xhofe.top/ocr/b64/text', { body: img, method: 'POST', headers: {"Content-Type":"text/html"}});
+                    code = code.replace(/O|o/g, '0');
+                             code = code.replace(/Q|q/g, '0');
+                             code = code.replace(/i|I/g, '1');
+                             code = code.replace(/j|l/g, '1'); 
+                             code = code.replace(/x|X/g, '4');
+                             code = code.replace(/q|g/g, '9');
+                             code = code.replace(/b/g, '6');
                     log('识别验证码：'+code);
                     return code;
                 }
