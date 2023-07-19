@@ -259,3 +259,22 @@ function yz(url) {
         return yz
     }
 }
+function code_data(url) {
+    var yz = post('https://www.tutengocr.com/api/ocr/ty01?key=9OI6LoXOXbZsBBSNPgMoXcx0px', {
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify({
+            key: '9OI6LoXOXbZsBBSNPgMoXcx0px',
+            image: convertBase64Image(url),
+        })
+    })
+    var code_data = JSON.parse(yz).data;
+    code_data = code_data.replace(/o/g, '0'); //将o替换为0
+    code_data = code_data.replace(/q/g, '0'); //将q替换为0
+    code_data = code_data.replace(/I/g, '1'); //将i替换为1
+    code_data = code_data.replace(/l/g, '1'); //将L替换为1
+    code_data = code_data.replace(/x/g, '4'); //将X替换为4
+    log('识别验证码：' + code_data);
+    return code_data
+}
