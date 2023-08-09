@@ -1,4 +1,4 @@
-function banner(blist, time, Url, id) {
+function banner(blist, title, time, Url, id) {
     var d = []   
     if (id == undefined || typeof(id) != 'string') {
         id = '0';
@@ -36,6 +36,7 @@ var url = Url
         img: blist[x].img,
         desc: '0',
         url: url,
+        title: title,
         col_type: 'card_pic_1',
         extra: {
             id: id,
