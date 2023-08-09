@@ -1,5 +1,6 @@
-function banner(blist, time, url, id) {
+function banner(blist, time, Url, id) {
     var d = []   
+    var time = time
     if (id == undefined || typeof(id) != 'string') {
         id = '0';
     }
@@ -31,7 +32,7 @@ toast('最后一张无法删除');
                         });
 }, i);
 }else{
-var url = url
+var url = Url
 }
     d.push({
         img: blist[i].img,
@@ -131,50 +132,4 @@ var url = url
         unRegisterTask(id);
     }
     return d
-}
-function arr() {
-return `
-/*---------------------------------*/
-/*
-        let arr = []
-        let x = Math.floor(Math.random() * 1119)+2
-//log(x)
-        let html = request('https://pic.netbian.com/index_'+x+'.html', {})
-        let list = pdfa(html, '.slist&&li')
-    for (let i = 1; i < list.length; i++) {
-    arr.push({        
-        img: 'https://pic.netbian.com'+pdfh(list[i], 'img&&src'),
-        //img: getItem('img').includes('storage'||'file') ? getItem('img', 'https://www.dmoe.cc/random.php') : getItem('img', 'https://www.dmoe.cc/random.php') +'#' + Math.random(),
-    })
-}
-*/
-/*---------------------------------*/
-
-var arr = storage0.getItem('arr'); 
-clearItem('arr');
-var img = getItem('img');
-clearItem('img');
-if (img != 'undefined') {
-    arr.push({
-        img:img.includes('storage') ? img : img+'#' + Math.random()
-    });    JSON.stringify(arr).includes('mwm.moe') ? arr.shift() : '';
-}
-var j = storage0.getMyVar('url');
-//log(getMyVar('添加'))
-if (getMyVar('添加') !== '0' && getMyVar('删') === '0' && arr != '') {
-//log('存在')
-arr.splice(j, 1)
-};
-clearMyVar('删');
-clearMyVar('添加');
-if (getItem('删除') == 0) {
-  arr.pop();
-    }
-clearItem('删除');
-if (arr == '') {
-arr = [{
-    'img': 'https://t.mwm.moe/moe/'
-}];
-}
-storage0.setItem('arr', arr);`
 }
