@@ -1,41 +1,39 @@
 function banner(blist, time, Url, id) {
     var d = []   
-    var time = time
     if (id == undefined || typeof(id) != 'string') {
         id = '0';
     }
-    let i = getMyVar('x', '0')
-        clearMyVar('x')
-        if (i > blist.length - 1) {
-            i = 0
+    let x = getMyVar(id + 'x', '0')
+        clearMyVar(id + 'x')
+        if (x > blist.length - 1) {
+            x = 0
         }
-var tz = getItem('停止')
-if (tz == 0) {
-var url = blist[i].img + $("#noLoading#").lazyRule((i) => {
+if (getItem(id + '停止') == 0) {
+var url = blist[x].img + $("#noLoading#").lazyRule((x,id) => {
     var fiieName = input.includes('storage') ? input.split("/")[10]:input.split("#")[1];
     return 'select://' + JSON.stringify({
                             "title": '删除'+fiieName,
                             "options": ["取消", "确定"],
                             col: 2,
-                            js: $.toString((i, aa) => {
+                            js: $.toString((x, inputs, id) => {
                                 if ("确定" == input) {  
-clearMyVar('url');
-refreshPage();                                storage0.putMyVar('url', i);
-putMyVar('删', '0');                                  refreshPage();
-if (/mwm\.moe/.test(aa)) {
+clearMyVar(id + 'url');
+refreshPage();                                storage0.putMyVar(id + 'url', x);
+putMyVar(id + '删', '0');                                  refreshPage();
+if (/mwm\.moe/.test(inputs)) {
 toast('最后一张无法删除');
 }else{                                  toast('图片已删除');
 }
                                 }
                                 if ("取消" == input) {}
-                            }, i, input)
+                            }, x, input,id)
                         });
-}, i);
+},x,id);
 }else{
 var url = Url
 }
     d.push({
-        img: blist[i].img,
+        img: blist[x].img,
         desc: '0',
         url: url,
         col_type: 'card_pic_1',
@@ -43,75 +41,73 @@ var url = Url
             id: id,
             longClick: [{
                 title: ' 停止 ',
-                js: $.toString(() => {
-                    setItem('停止', '0')          
+                js: $.toString((id) => {
+                    setItem(id + '停止', '0')          
                     refreshPage()
                     toast('轮播已停止')
-                })
+                },id)
             }, {
                 title: ' 轮播 ',
-                js: $.toString(() => {
-                    clearItem('停止')
+                js: $.toString((id) => {
+                    clearItem(id + '停止')
                     refreshPage()
                     toast('轮播已打开')
-                })
+                },id)
             }, {
                 title: ' 网络 ',
-                js: $.toString(() => {
-                putMyVar('添加', '0')
-                    return $(getItem('p'), "请输入网址,支持本地图片地址，确定后，可以继续加图片").input(function(){
+                js: $.toString((id) => {
+                putMyVar(id + '添加', '0')
+                    return $(getItem('p'), "请输入网址,支持本地图片地址，确定后，可以继续加图片").input(function(id){
                         if (/http|storage|hiker/.test(input)) {
-                            setItem('p', input)
-                            setItem('img', input)
-                            refreshPage()
-                            return $(getItem('p'), "请输入网址,支持本地图片地址，确定后，可以继续加图片").input(arguments.callee);
+                            setItem('p', input);                            setItem(id + 'img', input);                            refreshPage();
+                            return $(getItem('p'), "请输入网址,支持本地图片地址，确定后，可以继续加图片").input(arguments.callee,id);
                         } else {
                             toast('不是正确网址')
                         }
-                    })
-                })
+                    },id)
+                },id)
             }, {
                 title: ' 本地 ',
-                js: $.toString(() => {
-            putMyVar('添加', '0')
+                js: $.toString((id) => {
+            putMyVar(id + '添加', '0')
                     
-            return "fileSelect://" + $.toString(() => {
-                setItem('img', input)
+            return "fileSelect://" + $.toString((id) => {
+                setItem(id + 'img', input)
                 
                 refreshPage();
                 toast('文件已添加')
                        
-})
-                })
+},id)
+                },id)
             }, {
                 title: ' 删除 ',
-                    js: $.toString(() => {
+                    js: $.toString((id) => {
                         return 'select://' + JSON.stringify({
                             "title": "选择删除",
                             "options": ["删除最近添加", "删除全部图片"],
                             col: 2,
-                            js: $.toString(() => {
+                            js: $.toString((id) => {
                                 if ("删除最近添加" == input) {
-                                  setItem('删除', '0');
+                                  setItem(id + '删除', '0');
                                     refreshPage();
                                     toast('图片已删除');
                                 }
                                 if ("删除全部图片" == input) {
-                                    clearItem('arr');
+                                    clearItem(id + 'arr');
                                     refreshPage();
                                     toast('图片已删除')
                                 }
-                            })
+                            },id)
                         });
-                    })
+                    },id)
             }]
         }
     })
-    i++
-    putMyVar('x', i)
+    x++
+    putMyVar(id + 'x', x)
     registerTask(id, time, $.toString((blist, id) => {
-        let i = getMyVar('i', '0')
-        clearMyVar('i')
+        let i = getMyVar(id + 'i', '0')
+        clearMyVar(id + 'i')
         if (i > blist.length - 1) {
             i = 0
         }
@@ -126,9 +122,9 @@ var url = Url
             unRegisterTask('banner')
         }
         i++
-        putMyVar('i', i)
+        putMyVar(id + 'i', i)
     }, blist, id))
-    if (getItem('停止') == 0) {
+    if (getItem(id + '停止') == 0) {
         unRegisterTask(id);
     }
     return d
@@ -151,31 +147,31 @@ function arr() {
 */
 /*---------------------------------*/
 
-var arr = storage0.getItem('arr'); 
-clearItem('arr');
-var img = getItem('img');
-clearItem('img');
+var arr = storage0.getItem(id + 'arr'); 
+clearItem(id + 'arr');
+var img = getItem(id + 'img');
+clearItem(id + 'img');
 if (img != 'undefined') {
     arr.push({
         img:img.includes('storage') ? img : img+'#' + Math.random()
     });    JSON.stringify(arr).includes('mwm.moe') ? arr.shift() : '';
 }
-var j = storage0.getMyVar('url');
-//log(getMyVar('添加'))
-if (getMyVar('添加') !== '0' && getMyVar('删') === '0' && arr != '') {
+var j = storage0.getMyVar(id + 'url');
+if (getMyVar(id + '添加') !== '0' && getMyVar(id + '删') === '0' && arr != '') {
 //log('存在')
 arr.splice(j, 1)
 };
-clearMyVar('删');
-clearMyVar('添加');
-if (getItem('删除') == 0) {
+clearMyVar(id + 'url');
+clearMyVar(id + '删');
+clearMyVar(id + '添加');
+if (getItem(id + '删除') == 0) {
   arr.pop();
     }
-clearItem('删除');
+clearItem(id + '删除');
 if (arr == '') {
 arr = [{
     'img': 'https://t.mwm.moe/moe/'
 }];
 }
-storage0.setItem('arr', arr);`
+storage0.setItem(id + 'arr', arr);`
 }
