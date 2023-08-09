@@ -1,5 +1,4 @@
 function banner(blist, time, url, id) {
-    return `
     var d = []   
     if (id == undefined || typeof(id) != 'string') {
         id = '0';
@@ -131,7 +130,7 @@ var url = url
     if (getItem('停止') == 0) {
         unRegisterTask(id);
     }
-    return d`
+    return d
 }
 function arr() {
 return `
