@@ -58,10 +58,10 @@ var url = Url
                 title: ' 网络 ',
                 js: $.toString((id) => {
                 putMyVar(id + '添加', '0')
-                    return $(getItem('p'), "请输入网址,支持本地图片地址，确定后，可以继续加图片").input(function(id){
+                    return $(getItem('p'), "请输入网址,API接口网址后可以加@@,支持本地").input(function(id){
                         if (/http|storage|hiker/.test(input)) {
                             setItem('p', input);                            setItem(id + 'img', input);                            refreshPage();
-                            return $(getItem('p'), "请输入网址,支持本地图片地址，确定后，可以继续加图片").input(arguments.callee,id);
+                            return $(getItem('p'), "请输入网址,API接口网址后可以加@@,支持本地").input(arguments.callee,id);
                         } else {
                             toast('不是正确网址')
                         }
@@ -132,30 +132,23 @@ var url = Url
 }
 function arr() {
     return `
-    /*---------------------------------*/
-/*
-        let arr = []
-        let x = Math.floor(Math.random() * 1119)+2
-//log(x)
-        let html = request('https://pic.netbian.com/index_'+x+'.html', {})
-        let list = pdfa(html, '.slist&&li')
-    for (let i = 1; i < list.length; i++) {
-    arr.push({        
-        img: 'https://pic.netbian.com'+pdfh(list[i], 'img&&src'),
-        //img: getItem('img').includes('storage'||'file') ? getItem('img', 'https://www.dmoe.cc/random.php') : getItem('img', 'https://www.dmoe.cc/random.php') +'#' + Math.random(),
-    })
-}
-*/
-/*---------------------------------*/
-
 var arr = storage0.getItem(id + 'arr'); 
 clearItem(id + 'arr');
-var img = getItem(id + 'img');
+var img = getItem(id+'img');
 clearItem(id + 'img');
 if (img != 'undefined') {
     arr.push({
-        img:img.includes('storage') ? img : img+'#' + Math.random()
-    });    JSON.stringify(arr).includes('mwm.moe') ? arr.shift() : '';
+        img: img.includes('storage')?img:img + '#' + Math.random()
+    }); 
+if (img.includes('@@')) {
+for (let i = 1; i < 30; i++) {
+    arr.push({
+        img: img.replace('@@','') + '#' + Math.random()
+    });
+  }
+}
+
+JSON.stringify(arr).includes('mwm.moe') ? arr.shift() : '';
 }
 var j = storage0.getMyVar(id + 'url');
 if (getMyVar(id + '添加') !== '0' && getMyVar(id + '删') === '0' && arr != '') {
