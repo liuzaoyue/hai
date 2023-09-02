@@ -223,13 +223,7 @@ function banner(start, arr, data, cfg) {
             "Content-Type": "text/html"
         }
     });
-                             code = code.replace(/O|o/g, '0');
-                             code = code.replace(/Q|q/g, '0');
-                             code = code.replace(/i|I/g, '1');
-                             code = code.replace(/L|l/g, '1'); 
-                             code = code.replace(/x|X/g, '4');
-                             code = code.replace(/q|g/g, '9');
-                             code = code.replace(/b/g, '6');
+
     log('识别验证码：' + code);
     return code;
 }  
