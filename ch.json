@@ -40,3 +40,22 @@ d.push({
    })
 setResult(d);
 }
+
+function er() {
+    var d = [];
+    if (MY_URL.includes('coding')) {
+    var ua = PC_UA;
+    }else
+    var ua = '';
+    d.push({
+        col_type: "x5_webview_single",
+            url: MY_URL,
+                desc: "float&&100%",
+                    extra: {
+                            canBack: true,
+                                    ua: ua
+                                        }
+                                        })
+                                        setResult(d);
+                                        }
+}
